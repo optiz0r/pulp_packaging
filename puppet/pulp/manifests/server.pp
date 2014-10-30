@@ -75,11 +75,14 @@ class pulp::server (
     # Apache configuration settings
     $wsgi_processes = undef,
 
+    # Apache management
+    $manage_httpd = true,
+
 ) inherits pulp::globals {
     if $::operatingsystem == 'RedHat' and $::lsbmajdistrelease == '5' {
         fail('Pulp servers are not supported on RHEL5.')
     }
-   
+
     # Install, configure, and start the necessary services
     anchor { 'pulp::server::start': }->
     class { 'pulp::server::install': }->
