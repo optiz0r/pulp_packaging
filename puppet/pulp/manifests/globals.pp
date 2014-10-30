@@ -24,7 +24,7 @@ class pulp::globals (
                 fail("${::operatingsystem} ${::operatingsystemrelease} is unsupported.")
             }
         }
-        'RedHat': {
+        'RedHat', 'CentOS': {
             package { 'redhat-lsb':
                 ensure => 'installed'
             } ->
@@ -37,7 +37,7 @@ class pulp::globals (
             }
         }
         default: {
-            fail('Currently, this module only supports RedHat and Fedora operating systems.')
+            fail('Currently, this module only supports RedHat, CentOS and Fedora operating systems.')
         }
     }
 }
